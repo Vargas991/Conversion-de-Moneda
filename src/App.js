@@ -14,7 +14,7 @@ const App = () =>{
   const {historial,handleHistorial} = useHistorial([])
   
 
-    
+    console.log(value);
  
 
   return(
