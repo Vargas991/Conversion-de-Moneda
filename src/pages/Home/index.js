@@ -45,6 +45,7 @@ export default function Home({value , handleChange ,handleHistorial}){
     }
 
     if(loading) return<Spinner/>
+    
     return(
         <div className="Home">
            <form onSubmit={handleSubmit}>
