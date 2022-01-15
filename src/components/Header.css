@@ -1,0 +1,36 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px;
+    margin-bottom: 20px;
+    background-color: #e3e3e3;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.logo a{
+    text-decoration: none;
+    color: black;
+    transition:  0.3s ease;
+}
+
+.logo a:hover{
+    text-shadow: 0 0 4px rgb(91, 91, 91);
+}
+
+.menu{
+    display: flex;
+    align-content: center;
+    list-style: none;
+    text-decoration: none;
+}
+
+
+.menu-item a{
+    margin-right: 15px;
+    text-decoration: none;
+    color: rgb(140, 136, 136);
+}
+.menu .active{
+    font-weight: 500;
+    color: black;
+}

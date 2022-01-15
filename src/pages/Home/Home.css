@@ -1,0 +1,36 @@
+.Home {
+    max-width: 600px ;
+    margin: 10px auto;
+}
+
+.div-boton{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.ver-conversion{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total{
+    font-size: 25px;
+    color: #919107;
+}
+
+.boton{
+    padding: 5px 50px;
+    border: none;
+    border-radius: 3px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+
+.boton:hover{
+    background-color: #919107;
+    color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    
+}
