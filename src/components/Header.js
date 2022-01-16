@@ -11,10 +11,10 @@ export default function Header(){
             
             <ul className="menu">
                 <li className="menu-item">
-                    <NavLink to="/" activeClassName="active">Inicio</NavLink>
+                    <NavLink to="/" activeclassname="active">Inicio</NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink to="/historial" activeClassName="active">Historial</NavLink>
+                    <NavLink to="/historial" activeclassname="active">Historial</NavLink>
                 </li> 
             </ul>
         </nav>

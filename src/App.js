@@ -10,19 +10,18 @@ import Historial from "./pages/Historial";
 
 const App = () =>{
   
-  const {value,handleChange} = useFormulario({from: 1 ,selectFrom: 'USD',to: 1 ,selectTo:'COP'})
+  const props = useFormulario({from: 1 ,selectFrom: 'USD',to: 1 ,selectTo:'COP'})
   const {historial,handleHistorial} = useHistorial([])
-  
-
-    console.log(value);
- 
 
   return(
   <>
       <Header/>
       <div className="contenedor">
             <Routes>
-              <Route path="/" element={ <Home value={value} handleChange={handleChange} handleHistorial={handleHistorial}/>  } />
+              <Route path="/" element={ <Home 
+                {...props}
+                handleHistorial={handleHistorial} 
+                />  } />
               <Route path="/historial" element={ <Historial historial={historial}/>  } />
             </Routes>
       </div>   

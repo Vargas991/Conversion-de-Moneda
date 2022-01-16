@@ -1,6 +1,7 @@
 .Home {
     max-width: 600px ;
-    margin: 10px auto;
+    margin: 60px auto;
+    position: relative;
 }
 
 .div-boton{
@@ -33,4 +34,41 @@
     color: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     
+}
+.contenedor-btn{
+    display: flex;
+    justify-content: center;
+    margin: 15px ;
+    position: relative;
+}
+.intercambioBtn {
+    position: absolute;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 50%;
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+}
+
+.intercambioBtn:hover {
+    background-color:#e5e50f ;
+    color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+}
+.intercambioBtn .inputBtn{
+    height: 3px;
+    width: 3px;
+}
+
+
+.spinner{
+    position: fixed;
+    z-index: 10;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
 }

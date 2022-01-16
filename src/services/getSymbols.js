@@ -1,4 +1,4 @@
-const API_KEY = '65ffeee98c03175a8711eb809bb758c5'
+const API_KEY = '804bf3b4957c0f612ada2c0ca2b91577'
 
 
 export default function getSymbols(){
@@ -7,11 +7,12 @@ const url = `http://data.fixer.io/api/symbols?access_key=${API_KEY}`
     return fetch(url)
         .then(resp =>resp.json())
         .then( data => {
-            const {symbols} = data
-            if(symbols){
+            const {success,symbols} = data
+            console.log(`getSys out: ${symbols}`);
+            console.log(success)
+            if(success){
                 console.log(symbols);
-                const code = Object.keys(symbols)
-                return code
+                return symbols
             }
         })
 }

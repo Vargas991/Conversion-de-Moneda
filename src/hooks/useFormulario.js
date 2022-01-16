@@ -9,6 +9,12 @@ export default function useFormulario(inicial){
         })
     }
     
-    return {value,handleChange}
+
+    const intercambiarSelect= ()=>{
+        let tmp= value.selectFrom
+        setValue({...value , selectFrom: value.selectTo ,selectTo: tmp })
+        // setValue({...value, })
+    }
+    return {value,handleChange,intercambiarSelect}
 
 }

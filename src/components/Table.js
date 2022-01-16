@@ -16,12 +16,12 @@ export default function Table({historial}){
             </thead>
             <tbody>
                 {historial.map((item,index)=>
-                    <tr>
-                        <th key={item.index} scope="row">{index+1}</th>
-                        <td>{item.selectFrom}</td>
-                        <td>{item.from}</td>
-                        <td>{item.selectTo}</td>
-                        <td>{item.to}</td>
+                    <tr key={index}>
+                        <th  scope="row">{index+1}</th>
+                        <td >{item.selectFrom}</td>
+                        <td >{item.from}</td>
+                        <td >{item.selectTo}</td>
+                        <td >{item.to}</td>
                     </tr> )}
             </tbody>
         </table>

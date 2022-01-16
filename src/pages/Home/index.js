@@ -2,36 +2,44 @@ import { useState, useEffect } from "react";
 
 import Input from '../../components/Input'
 import Spinner from '../../components/Spinner'
+import BtnIntercambio from '../../components/BtnIntercambio'
 import getOperation from '../../services/getOperation'
 import getSymbols from '../../services/getSymbols'
 import './Home.css'
 import '../../index.css'
 
-export default function Home({value , handleChange ,handleHistorial}){
+
+export default function Home({value , handleChange ,handleHistorial,intercambiarSelect}){
 
     const [rate,setRate] = useState(0)
     const [codes , setCodes] = useState([])
-    const [loading , setLoading] = useState(false)
+    const [codesCountry , setCodesCountry] = useState([])
+    const [loading1 , setLoading1] = useState(false)
+    const [loading2 , setLoading2] = useState(false)
     const [convert , setConvert] =useState(true)
+    
     useEffect(() => {
-        setLoading(true)
+        setLoading1(true)
         getOperation({from: value.selectFrom , to:value.selectTo})
         .then(tasa => {
-            setLoading(false)
+            setLoading1(false)
             setRate(tasa)
         })
     },[value.selectFrom , value.selectTo])
 
     useEffect(()=>{
+        setLoading2(true)
         getSymbols()
         .then(code=> {
-            setCodes(code)
+            setLoading2(false)
+            setCodes(Object.keys(code))
+            setCodesCountry(Object.values(code))
         })
     },[])
       
 
-    const handleSubmit = e =>{
-        e.preventDefault()
+    const handleSubmit = () =>{
+        // e.preventDefault()
         const valor = {
             from: value.from,
             to:value.from*rate,
@@ -44,11 +52,17 @@ export default function Home({value , handleChange ,handleHistorial}){
         handleHistorial(valor)
     }
 
-    if(loading) return<Spinner/>
+
     
+
     return(
         <div className="Home">
-           <form onSubmit={handleSubmit}>
+            
+            {(loading1+loading2)? 
+            <div className="spinner"> 
+                <Spinner/>
+            </div>
+            : null}
 
             <h5>De:</h5>
             <div className="input-group">
@@ -63,9 +77,12 @@ export default function Home({value , handleChange ,handleHistorial}){
                         className="form-select"
                         onChange={handleChange}
                         value={value.selectFrom}>
-                        {codes.map(sym => <option key={sym} value={sym} >{sym}</option> )}
-                     </select >
+                        {codes.map((code ,index) => <option key={code} value={code} >{code} - {codesCountry[index]}</option> )}
+                    </select >
             </div>
+
+            <BtnIntercambio intercambiarSelect={intercambiarSelect}/>
+
             <h5>A:</h5>
             <div className="input-group">
                 <Input 
@@ -80,14 +97,14 @@ export default function Home({value , handleChange ,handleHistorial}){
                         name="selectTo"
                         onChange={handleChange}
                         value={value.selectTo}>
-                        {codes.map(sym => <option key={sym} value={sym} >{sym}</option> )}
+                        {codes.map((code ,index) => <option key={code} value={code} >{code} - {codesCountry[index]}</option> )}
                      </select >
           
             </div>
 
             {convert? 
                 <div className="div-boton">
-                            <button className="boton">Ver Conversión</button>
+                            <button onClick={handleSubmit} className="boton">Ver Conversión</button>
                 </div>
                 :<div className="div-boton">
                     <div className="ver-conversion">
@@ -98,10 +115,10 @@ export default function Home({value , handleChange ,handleHistorial}){
                         <span>Total a Recibir:</span>
                         <span className="total"> {value.from*rate} {value.selectTo} </span>
                     </div>
-                    <button className="boton">Volver</button>
+                    <button onClick={handleSubmit} className="boton">Volver</button>
                 </div>
             }
-            </form>
+           
         </div>
     )
 }
