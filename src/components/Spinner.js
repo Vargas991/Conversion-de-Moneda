@@ -3,7 +3,9 @@ import  {Bars}  from "react-loader-spinner";
 
 export default function Spinner(){
     return(
-        <Bars color="#e6e60f" height={60} width={60} />
+        <div className="spinner"> 
+            <Bars color="#e6e60f" height={60} width={60} />
+        </div>
     )
     // <div className="spinner-border text-primary" role="status">
     //         <span className="visually-hidden">Loading...</span>

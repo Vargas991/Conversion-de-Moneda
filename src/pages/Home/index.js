@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Input from '../../components/Input'
 import Spinner from '../../components/Spinner'
 import BtnIntercambio from '../../components/BtnIntercambio'
+import ReporteConversion from '../../components/ReporteConversion'
 import getOperation from '../../services/getOperation'
 import getSymbols from '../../services/getSymbols'
 import './Home.css'
@@ -38,8 +39,14 @@ export default function Home({value , handleChange ,handleHistorial,intercambiar
     },[])
       
 
-    const handleSubmit = () =>{
-        // e.preventDefault()
+    const handleVerConversion = () =>{
+       
+        setConvert(!convert)
+        if(!convert) return
+        handleAddHistorial()
+    }
+
+    const handleAddHistorial =()=>{
         const valor = {
             from: value.from,
             to:value.from*rate,
@@ -47,21 +54,14 @@ export default function Home({value , handleChange ,handleHistorial,intercambiar
             selectTo: value.selectTo,
             rate
         } 
-        setConvert(!convert)
-        if(!convert) return
         handleHistorial(valor)
     }
-
-
-    
 
     return(
         <div className="Home">
             
             {(loading1+loading2)? 
-            <div className="spinner"> 
-                <Spinner/>
-            </div>
+            <Spinner/>
             : null}
 
             <h5>De:</h5>
@@ -99,26 +99,18 @@ export default function Home({value , handleChange ,handleHistorial,intercambiar
                         value={value.selectTo}>
                         {codes.map((code ,index) => <option key={code} value={code} >{code} - {codesCountry[index]}</option> )}
                      </select >
-          
             </div>
 
             {convert? 
                 <div className="div-boton">
-                            <button onClick={handleSubmit} className="boton">Ver Conversión</button>
+                    <button onClick={handleVerConversion} className="boton">Ver Conversión</button>
                 </div>
                 :<div className="div-boton">
-                    <div className="ver-conversion">
-                        <span>Precio: </span>
-                        <span>1 {value.selectFrom} = {rate} {value.selectTo} </span>
-                    </div>
-                    <div className="ver-conversion">
-                        <span>Total a Recibir:</span>
-                        <span className="total"> {value.from*rate} {value.selectTo} </span>
-                    </div>
-                    <button onClick={handleSubmit} className="boton">Volver</button>
+                    <ReporteConversion value={value} rate={rate}/>
+                    <button onClick={handleVerConversion} className="boton">Volver</button>
+                    <button onClick={handleAddHistorial} className="boton">Agregar al Historial</button>
                 </div>
             }
-           
         </div>
     )
 }

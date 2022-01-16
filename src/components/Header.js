@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import './Header.css'
-export default function Header(){
+export default function Header({historial}){
 
     return(
         <nav className="header">
@@ -15,6 +15,7 @@ export default function Header(){
                 </li>
                 <li className="menu-item">
                     <NavLink to="/historial" activeclassname="active">Historial</NavLink>
+                    {historial?<span className="cantidad">{historial}</span>:null}
                 </li> 
             </ul>
         </nav>

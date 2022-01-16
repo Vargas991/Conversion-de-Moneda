@@ -2,7 +2,6 @@
 
 export default function Table({historial}){
 
-    if(!historial.length)return <h2>Historial Vacio...</h2>
     return (
         <table className="table">
             <thead>

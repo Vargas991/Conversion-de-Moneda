@@ -25,6 +25,11 @@
 }
 
 
+
+.menu-item {
+    position: relative;
+}
+
 .menu-item a{
     margin-right: 15px;
     text-decoration: none;
@@ -33,4 +38,16 @@
 .menu .active{
     font-weight: 500;
     color: black;
+}
+
+ .cantidad{
+    position: absolute;
+    bottom: -5px;
+    right: 5px;
+    background-color: #919107;
+    color: white;
+    border-radius: 100%;
+    padding: 1px 5px;
+    font-size: 10px;
+    font-weight: 500;
 }

@@ -15,7 +15,7 @@ const App = () =>{
 
   return(
   <>
-      <Header/>
+      <Header historial={historial.length}/>
       <div className="contenedor">
             <Routes>
               <Route path="/" element={ <Home 

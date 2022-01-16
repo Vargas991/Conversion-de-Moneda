@@ -5,7 +5,6 @@ export default function getOperation({from , to}={from:"USD",to:"COP"}){
         return fetch(url)
             .then(resp =>resp.json())
             .then( data => {
-                console.log(`Log de Data: ${data} ${from} ${to}`);
                 const [rate] = Object.values(data)
                 return rate
             })

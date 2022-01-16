@@ -8,10 +8,7 @@ const url = `http://data.fixer.io/api/symbols?access_key=${API_KEY}`
         .then(resp =>resp.json())
         .then( data => {
             const {success,symbols} = data
-            console.log(`getSys out: ${symbols}`);
-            console.log(success)
             if(success){
-                console.log(symbols);
                 return symbols
             }
         })
